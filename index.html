@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CaptMate</title>
+<meta name="description" content="CaptMate - Android app for docking and passage navigation: NMEA 0183 + AIS, charts, motion prediction, route ETA.">
+<link rel="icon" href="icon.png">
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #0d1b2a; --muted: #5b6776;
+    --navy: #0d2a4a; --gold: #c9a227; --line: #e2e6eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0a1420; --card: #111f30; --ink: #e8eef5; --muted: #9aa8b8; --line: #1f3248; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 72px 0 48px; text-align: center; }
+  header img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+  h1 { font-size: 44px; margin: 20px 0 8px; letter-spacing: -.5px; }
+  h1 span { color: var(--gold); }
+  .lead { color: var(--muted); font-size: 19px; max-width: 620px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding-bottom: 48px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .note { border-left: 3px solid var(--gold); padding: 12px 16px; background: var(--card);
+          border-radius: 8px; color: var(--muted); font-size: 14px; margin-bottom: 48px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 14px; text-align: center; }
+  @media (max-width: 520px) { h1 { font-size: 34px; } header { padding: 48px 0 32px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="icon.png" alt="CaptMate icon">
+    <h1>Capt<span>Mate</span></h1>
+    <p class="lead">Docking and passage navigation on your Android phone &mdash; NMEA 0183 and AIS from several sources at once, layered charts, motion prediction and route ETA.</p>
+  </header>
+
+  <section class="grid">
+    <div class="card"><h3>Docking mode</h3><p>ROT bar, BOW / AFT sway panel, red motion-prediction outlines, pivot point and a distance log along the hull line.</p></div>
+    <div class="card"><h3>Navigation mode</h3><p>Import GPX, RTZ or CSV routes. Next waypoint, BRG, XTE, DTG, TTG, ETA and the required speed for a target ETA.</p></div>
+    <div class="card"><h3>AIS</h3><p>Targets with vectors, names, voyage data and CPA / TCPA. Own-ship size and antenna position from AIS static data.</p></div>
+    <div class="card"><h3>Charts</h3><p>OpenStreetMap, Open Waters Seascape / Seamap, OpenSeaMap seamarks, MapTiler and your own MBTiles (raster or vector, S-57 converted).</p></div>
+    <div class="card"><h3>Data sources</h3><p>TCP, UDP, Bluetooth SPP and log replay, with an AUTO scan for Pilot Plugs and NMEA Wi-Fi gateways.</p></div>
+    <div class="card"><h3>Weather</h3><p>Wind, waves, currents and isobars with a forecast slider, route weather and an ETA that includes forecast currents.</p></div>
+  </section>
+
+  <p class="note">Assistive tool only &mdash; not for primary navigation or collision avoidance.</p>
+</div>
+<footer>&copy; <span id="y">2026</span> CaptMate &middot; captmate.com</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
