@@ -223,6 +223,15 @@
            box-shadow: 0 12px 30px rgba(0,0,0,.4); transition: opacity .3s, transform .3s; }
   .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+  /* phones get the 9:16 film */
+  .film.vertical { max-width: 420px; margin-left: auto; margin-right: auto; }
+  .unmute { position: absolute; left: 50%; top: 18px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px;
+            border: 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; color: #1a1405; background: var(--gold);
+            padding: 9px 16px; border-radius: 999px; box-shadow: 0 8px 24px rgba(0,0,0,.4); animation: pulse 2s infinite; }
+  .unmute[hidden] { display: none; }
+  .unmute svg { width: 18px; height: 18px; }
+  @keyframes pulse { 50% { box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 8px rgba(224,180,58,.25); } }
+
   /* QR pop-up */
   .modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 20px; background: rgba(3,8,15,.72);
            backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; transition: opacity .25s; }
@@ -323,9 +332,8 @@
     <p class="sub rv" style="--d:.16s" lang="en">From live data to the last metre alongside: charts, AIS, routes, weather, docking and replay.</p>
     <p class="sub rv" style="--d:.16s" lang="zh">从实时数据到靠上码头的最后一米：海图、AIS、航线、天气、靠泊与回放。</p>
     <div class="film rv" style="--d:.24s">
-      <video controls playsinline preload="metadata" poster="media/promo-poster.jpg" width="1920" height="1080">
-        <source src="media/promo.mp4" type="video/mp4">
-      </video>
+      <video id="film-video" controls playsinline preload="metadata" poster="media/promo-poster.jpg" width="1920" height="1080" src="media/promo.mp4"></video>
+      <button class="unmute" id="unmute" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span lang="en">Tap for sound</span><span lang="zh">点击开启声音</span></button>
     </div>
     <div class="stats">
       <div class="stat rv"><div class="n"><span data-count="4">4</span></div><div class="l"><span lang="en">source types at once — TCP, UDP, Bluetooth, replay</span><span lang="zh">类数据源同时接入：TCP、UDP、蓝牙、回放</span></div></div>
@@ -516,7 +524,7 @@
       <button class="ct wa rv" type="button" data-qr="qr-wa" style="--d:.12s">
         <span class="logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg></span>
         <span class="name">WhatsApp</span>
-        <span class="val">+86 157 1282 3721</span>
+        <span class="val"><span lang="en">Message me on WhatsApp</span><span lang="zh">WhatsApp 在线沟通</span></span>
         <span class="act"><span lang="en">Scan QR / start a chat</span><span lang="zh">扫码 / 发起聊天</span></span>
       </button>
       <a class="ct gh rv" href="https://github.com/navibox" target="_blank" rel="noopener" style="--d:.18s">
@@ -551,7 +559,7 @@
   <div class="sheet">
     <button class="x" type="button" data-close aria-label="Close">×</button>
     <h3 id="qr-wa-t"><span lang="en">Chat on WhatsApp</span><span lang="zh">WhatsApp 联系</span></h3>
-    <p><span lang="en">Scan with your phone camera or WhatsApp</span><span lang="zh">用手机相机或 WhatsApp 扫码</span> · <b>+86 157 1282 3721</b></p>
+    <p><span lang="en">Scan with your phone camera or WhatsApp</span><span lang="zh">用手机相机或 WhatsApp 扫码</span></p>
     <div class="qr"><img src="media/qr-whatsapp.svg" alt="WhatsApp QR code" width="240" height="240"><span class="qlogo wal"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg></span></div>
     <a class="btn primary" href="https://wa.me/8615712823721" target="_blank" rel="noopener"><span lang="en">Open WhatsApp chat</span><span lang="zh">打开 WhatsApp 聊天</span></a>
   </div>
@@ -630,6 +638,33 @@
       c.style.setProperty('--my', (e.clientY - r.top) + 'px');
     });
   });
+
+  /* phones: swap in the vertical film and start it (muted, as browsers require) when it scrolls into view */
+  var film = document.getElementById('film-video'), unmute = document.getElementById('unmute');
+  if (window.matchMedia && window.matchMedia('(max-width: 760px), (orientation: portrait) and (max-width: 1024px)').matches) {
+    film.parentNode.classList.add('vertical');
+    film.width = 1080; film.height = 1920;
+    film.poster = 'media/promo-vertical-poster.jpg';
+    film.src = 'media/promo-vertical.mp4';
+    if (!reduce) {
+      film.muted = true;
+      var userTook = false;
+      film.addEventListener('volumechange', function () { if (!film.muted) unmute.hidden = true; });
+      var autoPausing = false;
+      film.addEventListener('pause', function () { if (autoPausing) { autoPausing = false; return; } if (!film.ended && document.visibilityState === 'visible') userTook = true; });
+      unmute.addEventListener('click', function () { film.muted = false; film.play(); unmute.hidden = true; });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) {
+              if (userTook && film.paused) return;
+              var p = film.play(); if (p && p.then) p.then(function () { if (film.muted) unmute.hidden = false; }, function () {});
+            } else if (!film.paused) { autoPausing = true; film.pause(); }
+          });
+        }, { threshold: .5 }).observe(film);
+      }
+    }
+  }
 
   /* QR pop-ups */
   var lastFocus = null;
