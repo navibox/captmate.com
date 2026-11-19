@@ -9,6 +9,9 @@
 <meta property="og:description" content="Every metre. Every mile. Every watch. Docking and passage navigation on your Android phone.">
 <meta property="og:image" content="https://captmate.com/media/promo-poster.jpg">
 <meta name="theme-color" content="#08111d">
+<link rel="canonical" href="https://captmate.com/">
+<meta property="og:url" content="https://captmate.com/">
+<meta property="og:type" content="website">
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -509,10 +512,10 @@
       <p class="sub rv" style="--d:.16s" lang="zh">产品咨询、意见反馈、上船试用或商务合作，任选一种方式联系我们。</p>
     </div>
     <div class="contact">
-      <a class="ct mail rv" href="mailto:lichoppy@gmail.com">
+      <a class="ct mail rv" href="#contact" data-m="123,126,116,127,120,103,103,110,87,112,122,118,126,123,57,116,120,122">
         <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></svg></span>
         <span class="name"><span lang="en">Email</span><span lang="zh">电子邮件</span></span>
-        <span class="val">lichoppy@gmail.com</span>
+        <span class="val" data-m-text>…</span>
         <span class="act"><span lang="en">Write an email →</span><span lang="zh">发送邮件 →</span></span>
       </a>
       <button class="ct wx rv" type="button" data-qr="qr-wx" style="--d:.06s">
@@ -665,6 +668,14 @@
       }
     }
   }
+
+  /* email: the address is not in the HTML (stops most spam harvesters); it is put together here */
+  document.querySelectorAll('[data-m]').forEach(function (a) {
+    var m = a.getAttribute('data-m').split(',').map(function (n) { return String.fromCharCode(n ^ 23); }).join('');
+    a.href = 'mail' + 'to:' + m;
+    var t = a.querySelector('[data-m-text]'); if (t) t.textContent = m;
+    a.removeAttribute('data-m');
+  });
 
   /* QR pop-ups */
   var lastFocus = null;
