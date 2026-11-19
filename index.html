@@ -23,6 +23,9 @@
   h1 { font-size: 44px; margin: 20px 0 8px; letter-spacing: -.5px; }
   h1 span { color: var(--gold); }
   .lead { color: var(--muted); font-size: 19px; max-width: 620px; margin: 0 auto; }
+  .video { margin: 0 0 48px; }
+  .video video { display: block; width: 100%; height: auto; border-radius: 14px; background: #0a1420;
+                 box-shadow: 0 10px 40px rgba(0,0,0,.25); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding-bottom: 48px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
   .card h3 { margin: 0 0 6px; font-size: 18px; }
@@ -40,6 +43,12 @@
     <h1>Capt<span>Mate</span></h1>
     <p class="lead">Docking and passage navigation on your Android phone &mdash; NMEA 0183 and AIS from several sources at once, layered charts, motion prediction and route ETA.</p>
   </header>
+
+  <section class="video">
+    <video controls playsinline preload="metadata" poster="promo-poster.jpg" width="1920" height="1080">
+      <source src="promo.mp4" type="video/mp4">
+    </video>
+  </section>
 
   <section class="grid">
     <div class="card"><h3>Docking mode</h3><p>ROT bar, BOW / AFT sway panel, red motion-prediction outlines, pivot point and a distance log along the hull line.</p></div>
