@@ -1,0 +1,10 @@
+.git
+.github
+worker
+wrangler.toml
+.assetsignore
+README.md
+CNAME
+node_modules
+.wrangler
+download/CaptMate-beta.apk

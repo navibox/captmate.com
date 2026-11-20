@@ -1,0 +1,20 @@
+# captmate.com served by Cloudflare (static site + download counter). Deploy: npx wrangler deploy
+name = "captmate-site"
+main = "worker/index.js"
+compatibility_date = "2024-09-23"
+account_id = "53504d2f6bbb9d76ddc9baac297b827d"
+workers_dev = true
+# custom domains are switched on once the GitHub Pages DNS records are removed:
+# routes = [
+#   { pattern = "captmate.com", custom_domain = true },
+#   { pattern = "www.captmate.com", custom_domain = true },
+# ]
+
+[assets]
+directory = "."
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "captmate-beta"
+database_id = "770fe6d8-336e-4140-9d1f-c63ba98c6e15"

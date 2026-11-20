@@ -7,3 +7,10 @@ Website for the CaptMate Android app, served by GitHub Pages at https://captmate
 - `media/clip-*.mp4` - short muted loops cut from the film for the feature sections
 
 Edit and push to `main` to update the site.
+
+## Hosting
+The site is served by Cloudflare (Worker `captmate-site` with the files as static assets), deployed by
+`.github/workflows/deploy.yml` on every push to `main` (needs the repository secret `CLOUDFLARE_API_TOKEN`).
+`worker/index.js` counts APK downloads (D1 table `downloads`) and serves the file named in `download/latest.txt`.
+To release a new APK: add `download/CaptMate-<version>.apk`, put its name in `download/latest.txt`,
+update the version text in `index.html`, and keep a copy as `download/CaptMate-beta.apk` (GitHub Pages fallback).
