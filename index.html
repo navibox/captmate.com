@@ -274,6 +274,28 @@
     .js .rv { opacity: 1; transform: none; }
     .tag span { opacity: 1; transform: none; }
   }
+
+  /* ---------- beta: download + free code ---------- */
+  .beta { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 48px; text-align: left; }
+  .bcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 26px; }
+  .bcard h3 { margin: 0 0 8px; font-size: 21px; }
+  .bcard p { color: var(--muted); margin: 0 0 18px; line-height: 1.55; }
+  .bcard .meta { color: var(--dim); font-size: 13px; margin-top: 12px; }
+  .bnum { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; align-items: center; justify-content: center; background: var(--gold); color: #1a1405; font-weight: 800; font-size: 14px; margin-right: 8px; }
+  .bform { display: flex; gap: 10px; }
+  .bform input { flex: 1; min-width: 0; font: inherit; font-size: 16px; color: var(--ink); background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .bform input:focus { outline: 2px solid var(--gold2); outline-offset: 1px; }
+  .bform .btn { border: 0; cursor: pointer; white-space: nowrap; justify-content: center; }
+  .bform .btn[disabled] { opacity: .6; cursor: default; }
+  .bmsg { min-height: 20px; margin-top: 10px; font-size: 14px; color: #ff8a80; }
+  .bcode { display: none; margin-top: 6px; }
+  .bcode.on { display: block; }
+  .bcode .code { font: 800 26px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 1.5px; color: var(--ink); background: rgba(224,180,58,.08);
+                 border: 1px dashed var(--gold); border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; user-select: all; }
+  .bcode .hint { color: var(--muted); font-size: 14px; margin-top: 10px; line-height: 1.5; }
+  .bsteps { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.75; font-size: 15px; }
+  @media (max-width: 900px) { .beta { grid-template-columns: 1fr; } }
+  @media (max-width: 420px) { .bform { flex-direction: column; } }
 </style>
 </head>
 <body>
@@ -288,6 +310,7 @@
       <a href="#docking"><span lang="en">Docking</span><span lang="zh">靠泊</span></a>
       <a href="#navigation"><span lang="en">Navigation</span><span lang="zh">航行</span></a>
       <a href="#features"><span lang="en">Features</span><span lang="zh">功能</span></a>
+      <a href="#beta"><span lang="en">Beta</span><span lang="zh">内测</span></a>
       <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Language / 语言">
@@ -499,6 +522,43 @@
         <h3><span lang="en">Navigate</span><span lang="zh">开始导航</span></h3>
         <p lang="en">Load a route for the passage, switch to DOCK for the berth. Each mode keeps its own zoom.</p>
         <p lang="zh">航行时载入航线，靠泊时切到 DOCK 模式，两种模式各自记住缩放比例。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ beta: download + free code ============ -->
+<section class="sec" id="beta">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker rv"><span lang="en">Free beta</span><span lang="zh">免费内测</span></div>
+      <h2 class="rv" style="--d:.08s"><span lang="en">Try CaptMate on your ship</span><span lang="zh">上船试用 CaptMate</span></h2>
+      <p class="sub rv" style="--d:.16s" lang="en">Download the Android app and get a free beta code. The code unlocks every function for 30 days from activation.</p>
+      <p class="sub rv" style="--d:.16s" lang="zh">下载 Android 应用并领取免费内测激活码。激活后 30 天内可使用全部功能。</p>
+    </div>
+    <div class="beta">
+      <div class="bcard rv">
+        <h3><span class="bnum">1</span><span lang="en">Download the app</span><span lang="zh">下载应用</span></h3>
+        <p lang="en">CaptMate beta for Android phones and tablets. If Android asks, allow installing apps from your browser.</p>
+        <p lang="zh">适用于 Android 手机和平板。如果系统提示，请允许浏览器安装应用。</p>
+        <a class="btn primary" href="download/CaptMate-beta.apk" download="CaptMate-beta.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span lang="en">Download APK</span><span lang="zh">下载 APK</span></a>
+        <div class="meta"><span lang="en">Version 2.0-beta.92 · Android 7 or later · 0.3 MB</span><span lang="zh">版本 2.0-beta.92 · Android 7 及以上 · 0.3 MB</span></div>
+      </div>
+      <div class="bcard rv" style="--d:.08s">
+        <h3><span class="bnum">2</span><span lang="en">Get a beta code</span><span lang="zh">领取激活码</span></h3>
+        <p lang="en">Free. One code per e-mail; it works on up to 2 devices. Each device has one beta period.</p>
+        <p lang="zh">免费。每个邮箱一个激活码，最多可用于 2 台设备；每台设备只能试用一次。</p>
+        <form class="bform" id="bform" novalidate>
+          <input type="email" id="bmail" autocomplete="email" required placeholder="you@example.com" aria-label="E-mail">
+          <button class="btn primary" type="submit" id="bbtn"><span lang="en">Get code</span><span lang="zh">领取</span></button>
+        </form>
+        <div class="bmsg" id="bmsg" role="status" aria-live="polite"></div>
+        <div class="bcode" id="bcode">
+          <div class="code" id="bcodev" title="Copy"></div>
+          <div class="hint" lang="en">Tap the code to copy it, then enter it in the app. Valid 30 days from activation. Keep it: the same e-mail always gets the same code.</div>
+          <div class="hint" lang="zh">点击激活码即可复制，然后在应用中输入。激活后 30 天有效。请保存好：同一邮箱再次领取得到的是同一个激活码。</div>
+        </div>
+        <div class="meta"><span lang="en">We use the e-mail only for the code and beta news.</span><span lang="zh">邮箱仅用于激活码和内测通知。</span></div>
       </div>
     </div>
   </div>
@@ -719,5 +779,42 @@
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c29ddc33374343a689bf55117fe92c3a"}'></script><!-- End Cloudflare Web Analytics -->
+
+<script>
+/* beta code: ask api.captmate.com, show the code, copy on tap */
+(function () {
+  var f = document.getElementById('bform'); if (!f) return;
+  var mail = document.getElementById('bmail'), btn = document.getElementById('bbtn'), msg = document.getElementById('bmsg'),
+      box = document.getElementById('bcode'), val = document.getElementById('bcodev'), root = document.documentElement;
+  function zh() { return root.getAttribute('data-lang') === 'zh'; }
+  var T = {
+    bad_email: ['Please enter a valid e-mail address.', '请输入有效的邮箱地址。'],
+    too_many: ['Too many requests. Please try again in an hour.', '请求太频繁，请一小时后再试。'],
+    net: ['Could not reach the server. Please check the connection and try again.', '无法连接服务器，请检查网络后重试。'],
+    copied: ['Code copied', '激活码已复制'],
+    again: ['This e-mail already has a code; here it is again.', '这个邮箱已领取过，以下是您的激活码。']
+  };
+  function t(k) { return T[k] ? T[k][zh() ? 1 : 0] : k; }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault(); msg.textContent = '';
+    var m = mail.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) { msg.textContent = t('bad_email'); mail.focus(); return; }
+    btn.disabled = true;
+    fetch('https://api.captmate.com/v1/code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: m }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        btn.disabled = false;
+        if (j.error) { msg.textContent = t(j.error) || t('net'); return; }
+        val.textContent = j.code; box.classList.add('on'); f.style.display = 'none';
+        msg.style.color = 'var(--muted)'; msg.textContent = j.again ? t('again') : '';
+      })
+      .catch(function () { btn.disabled = false; msg.textContent = t('net'); });
+  });
+  val.addEventListener('click', function () {
+    var c = val.textContent, done = function () { var tt = document.getElementById('toast'); if (tt) { tt.textContent = t('copied') + ': ' + c; tt.classList.add('show'); setTimeout(function () { tt.classList.remove('show'); }, 2400); } };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(c).then(done, function () {}); else done();
+  });
+})();
+</script>
 </body>
 </html>
