@@ -555,8 +555,12 @@
         <div class="bmsg" id="bmsg" role="status" aria-live="polite"></div>
         <div class="bcode" id="bcode">
           <div class="code" id="bcodev" title="Copy"></div>
-          <div class="hint" lang="en">Tap the code to copy it, then enter it in the app. Valid 30 days from activation. The code is not e-mailed, so copy it or take a screenshot. The same e-mail always gets the same code.</div>
-          <div class="hint" lang="zh">点击激活码即可复制，然后在应用中输入。激活后 30 天有效。激活码不会发到邮箱，请复制或截图保存；同一邮箱再次领取得到的是同一个激活码。</div>
+          <div class="hint" lang="en">Tap the code to copy it, then enter it in the app. Valid 30 days from activation. The same e-mail always gets the same code.</div>
+          <div class="hint" lang="zh">点击激活码即可复制，然后在应用中输入。激活后 30 天有效。同一邮箱再次领取得到的是同一个激活码。</div>
+          <div class="hint bm-yes" lang="en" hidden>We have also e-mailed it to you; it should arrive within a few minutes (check the spam folder if not).</div>
+          <div class="hint bm-yes" lang="zh" hidden>激活码也已发到您的邮箱，几分钟内送达；如果没收到，请看看垃圾邮件。</div>
+          <div class="hint bm-no" lang="en" hidden>Please copy the code or take a screenshot to keep it.</div>
+          <div class="hint bm-no" lang="zh" hidden>请复制或截图保存激活码。</div>
         </div>
         <div class="meta"><span lang="en">We use the e-mail only for the code and beta news.</span><span lang="zh">邮箱仅用于激活码和内测通知。</span></div>
       </div>
@@ -800,12 +804,13 @@
     var m = mail.value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) { msg.textContent = t('bad_email'); mail.focus(); return; }
     btn.disabled = true;
-    fetch('https://api.captmate.com/v1/code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: m }) })
+    fetch('https://api.captmate.com/v1/code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: m, lang: zh() ? 'zh' : 'en' }) })
       .then(function (r) { return r.json(); })
       .then(function (j) {
         btn.disabled = false;
         if (j.error) { msg.textContent = t(j.error) || t('net'); return; }
         val.textContent = j.code; box.classList.add('on'); f.style.display = 'none';
+        box.querySelectorAll(j.mailed ? '.bm-yes' : '.bm-no').forEach(function (h) { h.hidden = false; });
         msg.style.color = 'var(--muted)'; msg.textContent = j.again ? t('again') : '';
       })
       .catch(function () { btn.disabled = false; msg.textContent = t('net'); });
