@@ -4,11 +4,10 @@ main = "worker/index.js"
 compatibility_date = "2024-09-23"
 account_id = "53504d2f6bbb9d76ddc9baac297b827d"
 workers_dev = true
-# custom domains are switched on once the GitHub Pages DNS records are removed:
-# routes = [
-#   { pattern = "captmate.com", custom_domain = true },
-#   { pattern = "www.captmate.com", custom_domain = true },
-# ]
+routes = [
+  { pattern = "captmate.com", custom_domain = true },
+  { pattern = "www.captmate.com", custom_domain = true },
+]
 
 [assets]
 directory = "."
