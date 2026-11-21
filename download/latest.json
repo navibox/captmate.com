@@ -1,10 +1,10 @@
 {
-  "version": "2.0-beta.99",
-  "code": 99,
+  "version": "2.0-beta.116",
+  "code": 116,
   "size": "5 MB",
-  "file": "CaptMate-2.0-beta.99.apk",
+  "file": "CaptMate-2.0-beta.116.apk",
   "notes": {
-    "en": ["Free version: opens straight away", "Unlock all functions for 30 days with your e-mail, in the app", "Offline world chart"],
-    "zh": ["免费版：安装后直接可用", "在应用内用邮箱解锁全部功能 30 天", "内置离线世界海图"]
+    "en": ["Charts by position: the Charts list shows what is available where you are", "Heading also from THS, HDG and HDM (magnetic turned into true)", "Update check: the app tells you when a new version is out"],
+    "zh": ["按船位找海图：海图列表优先显示当前位置可用的海图", "船首向也支持 THS、HDG、HDM（磁航向自动换算为真航向）", "检查更新：有新版本时 App 内提示"]
   }
 }
