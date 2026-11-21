@@ -13,4 +13,5 @@ The site is served by Cloudflare (Worker `captmate-site` with the files as stati
 `.github/workflows/deploy.yml` on every push to `main` (needs the repository secret `CLOUDFLARE_API_TOKEN`).
 `worker/index.js` counts APK downloads (D1 table `downloads`) and serves the file named in `download/latest.txt`.
 To release a new APK: add `download/CaptMate-<version>.apk`, put its name in `download/latest.txt`,
+update `download/latest.json` (version, code = build number, size, file, notes en/zh — the app's update check reads it),
 update the version text in `index.html`, and keep a copy as `download/CaptMate-beta.apk` (GitHub Pages fallback).
