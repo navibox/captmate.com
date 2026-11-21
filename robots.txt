@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /download/test/
 Allow: /
 
 Sitemap: https://captmate.com/sitemap.xml
