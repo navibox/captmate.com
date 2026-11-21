@@ -15,3 +15,9 @@ The site is served by Cloudflare (Worker `captmate-site` with the files as stati
 To release a new APK: add `download/CaptMate-<version>.apk`, put its name in `download/latest.txt`,
 update `download/latest.json` (version, code = build number, size, file, notes en/zh — the app's update check reads it),
 update the version text in `index.html`, and keep a copy as `download/CaptMate-beta.apk` (GitHub Pages fallback).
+
+## Chart catalogue
+`charts/catalog.json` lists the app's online chart sources (the app reads it at most once a day). An entry replaces the
+built-in source with the same `id` or adds a new one. Fields: `id, title, url` (tile template) or `tilejson, min, max,
+attr, overlay, region, area` ([[west,south,east,north],…], omit = worldwide), `packs` ([{title, url, size}] offline
+MBTiles downloaded straight from the provider). Add only sources whose licence allows use in the app.

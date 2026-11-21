@@ -1,0 +1,11 @@
+{
+  "v": 1,
+  "note": "CaptMate chart catalogue. Entries replace the app's built-in source with the same id or add new ones. area: [[west,south,east,north],...] (omit = worldwide). packs: offline MBTiles area packs downloaded straight from the provider. Only sources whose licence allows use in the app.",
+  "sources": [
+    {"id": "osm", "title": "OpenStreetMap (raster)", "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png", "min": 0, "max": 19, "attr": "© OpenStreetMap", "region": "Worldwide"},
+    {"id": "ofm", "title": "OpenFreeMap (vector, free, no key)", "tilejson": "https://tiles.openfreemap.org/planet", "min": 0, "max": 14, "attr": "OpenFreeMap © OpenMapTiles © OSM", "region": "Worldwide"},
+    {"id": "owsea", "title": "Open Waters Seascape: depths (vector, free)", "tilejson": "https://tiles.openwaters.io/seascape/vector.json", "min": 4, "max": 15, "attr": "© Open Waters Seascape (depths not reduced to a chart datum, not for navigation)", "region": "Worldwide"},
+    {"id": "owmap", "title": "Open Waters Seamap: land + seamarks (vector, free)", "tilejson": "https://tiles.openwaters.io/seamap/tiles.json", "min": 0, "max": 14, "attr": "© Open Waters: Seamap © OpenStreetMap contributors", "region": "Worldwide"},
+    {"id": "osea", "title": "OpenSeaMap seamarks (overlay)", "url": "https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", "min": 0, "max": 18, "attr": "OpenSeaMap", "overlay": true, "region": "Worldwide"}
+  ]
+}
