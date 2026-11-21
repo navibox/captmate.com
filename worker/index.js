@@ -16,6 +16,7 @@ export default {
         .bind(Date.now(), name, (req.cf && req.cf.country) || "", (req.headers.get("User-Agent") || "").slice(0, 120)).run().catch(() => {}));
       return new Response(apk.body, { headers: {
         "Content-Type": "application/vnd.android.package-archive",
+        ...(apk.headers.get("Content-Length") ? { "Content-Length": apk.headers.get("Content-Length") } : {}),
         "Content-Disposition": 'attachment; filename="' + name + '"',
         "Cache-Control": "no-store",
       } });
